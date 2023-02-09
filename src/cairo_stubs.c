@@ -21,6 +21,7 @@
 #include <cairo-ps.h>
 #include <cairo-svg.h>
 
+#define CAML_NAME_SPACE
 #include <caml/mlvalues.h>
 #include <caml/alloc.h>
 #include <caml/memory.h>
@@ -1168,6 +1169,17 @@ CAMLexport value caml_cairo_ft_create_for_pattern(
   FONT_FACE_ASSIGN(vff, ff);  
   FcPatternDestroy(p2);
   CAMLreturn(vff);
+}
+
+CAMLexport value caml_cairo_Ft_get_char_index(value vff, value vcc)
+{
+  CAMLparam2(vff, vcc);
+  CAMLlocal1(vindex);
+  FT_UInt index;
+
+  index = FT_Get_Char_Index(FT_FACE_VAL(vff), Int_val(vcc));
+  vindex = Val_int(index);
+  CAMLreturn(vindex);
 }
 
 CAMLexport value caml_cairo_ft_scaled_font_lock_face(value vsf)

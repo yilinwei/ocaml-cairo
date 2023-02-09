@@ -761,6 +761,9 @@ module Ft : sig
      {{:https://www.freetype.org/freetype2/docs/reference/ft2-base_interface.html#FT_Open_Face}face_index}.
      @param library Use the provided library as the "root" of the font. *)
 
+  val get_char_index : face -> Uchar.t -> int
+  (** [get_char_index face char] get the glyph index for [char] in [face]. *)
+
   type flag = [`Vertical_layout | `Force_autohint]
 
   val create_for_ft_face : ?flags:flag list -> face -> [`Ft] Font_face.t

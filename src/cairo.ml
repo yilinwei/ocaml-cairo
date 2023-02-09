@@ -607,6 +607,8 @@ module Ft = struct
   external new_face : library -> string -> int -> face
     = "caml_cairo_Ft_new_face"
 
+  external get_char_index : face -> Uchar.t -> int = "caml_cairo_Ft_get_char_index"
+
   let face ?library ?(index=0) pathname =
     let ft = match library with
       | Some l -> l
